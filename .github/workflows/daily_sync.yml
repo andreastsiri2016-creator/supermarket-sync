@@ -4,17 +4,17 @@ on:
   schedule:
     # Τρέχει αυτόματα κάθε μέρα στις 07:00 το πρωί!
     - cron: '0 5 * * *'
-  workflow_dispatch: # Επιτρέπει να το τρέχεις και χειροκίνητα
+  workflow_dispatch: # Επιτρέπει χειροκίνητη εκτέλεση
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: '3.10'
 
