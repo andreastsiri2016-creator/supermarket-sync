@@ -1,14 +1,14 @@
 import os
 import sys
 
-print("🚀 Εκκίνηση ασφαλούς συγχρονισμού Supabase...")
+print("🚀 Εκκίνηση συγχρονισμού με τη σωστή στήλη (chain_name)...")
 
 # 1. Έλεγχος Περιβάλλοντος
 url = os.environ.get("SUPABASE_URL")
 key = os.environ.get("SUPABASE_KEY")
 
 if not url or not key:
-    print("❌ ΣΦΑΛΜΑ: Λείπουν τα SUPABASE_URL ή SUPABASE_KEY στα Secrets!")
+    print("❌ ΣΦΑΛΜΑ: Λείπουν τα Secrets!")
     sys.exit(1)
 
 try:
@@ -29,117 +29,110 @@ products_catalog = [
     {"barcode": "520101000006", "name": "Χαρτί Υγείας 3-ply 10 ρολά", "category": "Χαρτικά & Καθαριστικά", "brand": "Endless", "unit": "10 τμχ", "image_url": "https://images.unsplash.com/photo-1584556812952-905ffd0c611a?w=400"}
 ]
 
-# 3. Κατάλογος Τιμών ανά Barcode & Αλυσίδα
+# 3. Κατάλογος Τιμών (Χρήση chain_name)
 prices_catalog = [
     # Ελαιόλαδο
-    {"barcode": "520101000001", "supermarket": "Lidl", "price": 10.90},
-    {"barcode": "520101000001", "supermarket": "Sklavenitis", "price": 11.45},
-    {"barcode": "520101000001", "supermarket": "AB Vassilopoulos", "price": 11.80},
-    {"barcode": "520101000001", "supermarket": "MyMarket", "price": 11.20},
-    {"barcode": "520101000001", "supermarket": "Galaxias", "price": 11.30},
-    {"barcode": "520101000001", "supermarket": "Kritikos", "price": 11.40},
+    {"barcode": "520101000001", "chain_name": "Lidl", "price": 10.90},
+    {"barcode": "520101000001", "chain_name": "Σκλαβενίτης", "price": 11.45},
+    {"barcode": "520101000001", "chain_name": "ΑΒ Βασιλόπουλος", "price": 11.80},
+    {"barcode": "520101000001", "chain_name": "MyMarket", "price": 11.20},
+    {"barcode": "520101000001", "chain_name": "Γαλαξίας", "price": 11.30},
+    {"barcode": "520101000001", "chain_name": "Κρητικός", "price": 11.40},
 
     # Φέτα
-    {"barcode": "520101000002", "supermarket": "Lidl", "price": 4.95},
-    {"barcode": "520101000002", "supermarket": "Sklavenitis", "price": 5.25},
-    {"barcode": "520101000002", "supermarket": "AB Vassilopoulos", "price": 5.48},
-    {"barcode": "520101000002", "supermarket": "MyMarket", "price": 5.15},
-    {"barcode": "520101000002", "supermarket": "Galaxias", "price": 5.10},
-    {"barcode": "520101000002", "supermarket": "Kritikos", "price": 5.30},
+    {"barcode": "520101000002", "chain_name": "Lidl", "price": 4.95},
+    {"barcode": "520101000002", "chain_name": "Σκλαβενίτης", "price": 5.25},
+    {"barcode": "520101000002", "chain_name": "ΑΒ Βασιλόπουλος", "price": 5.48},
+    {"barcode": "520101000002", "chain_name": "MyMarket", "price": 5.15},
+    {"barcode": "520101000002", "chain_name": "Γαλαξίας", "price": 5.10},
+    {"barcode": "520101000002", "chain_name": "Κρητικός", "price": 5.30},
 
     # Γάλα
-    {"barcode": "520101000003", "supermarket": "Lidl", "price": 1.55},
-    {"barcode": "520101000003", "supermarket": "Sklavenitis", "price": 1.62},
-    {"barcode": "520101000003", "supermarket": "AB Vassilopoulos", "price": 1.68},
-    {"barcode": "520101000003", "supermarket": "MyMarket", "price": 1.60},
-    {"barcode": "520101000003", "supermarket": "Galaxias", "price": 1.58},
-    {"barcode": "520101000003", "supermarket": "Kritikos", "price": 1.65},
+    {"barcode": "520101000003", "chain_name": "Lidl", "price": 1.55},
+    {"barcode": "520101000003", "chain_name": "Σκλαβενίτης", "price": 1.62},
+    {"barcode": "520101000003", "chain_name": "ΑΒ Βασιλόπουλος", "price": 1.68},
+    {"barcode": "520101000003", "chain_name": "MyMarket", "price": 1.60},
+    {"barcode": "520101000003", "chain_name": "Γαλαξίας", "price": 1.58},
+    {"barcode": "520101000003", "chain_name": "Κρητικός", "price": 1.65},
 
     # Καφές
-    {"barcode": "520101000004", "supermarket": "Lidl", "price": 4.50},
-    {"barcode": "520101000004", "supermarket": "Sklavenitis", "price": 4.80},
-    {"barcode": "520101000004", "supermarket": "AB Vassilopoulos", "price": 4.95},
-    {"barcode": "520101000004", "supermarket": "MyMarket", "price": 4.75},
-    {"barcode": "520101000004", "supermarket": "Galaxias", "price": 4.65},
-    {"barcode": "520101000004", "supermarket": "Kritikos", "price": 4.85},
+    {"barcode": "520101000004", "chain_name": "Lidl", "price": 4.50},
+    {"barcode": "520101000004", "chain_name": "Σκλαβενίτης", "price": 4.80},
+    {"barcode": "520101000004", "chain_name": "ΑΒ Βασιλόπουλος", "price": 4.95},
+    {"barcode": "520101000004", "chain_name": "MyMarket", "price": 4.75},
+    {"barcode": "520101000004", "chain_name": "Γαλαξίας", "price": 4.65},
+    {"barcode": "520101000004", "chain_name": "Κρητικός", "price": 4.85},
 
     # Μακαρόνια
-    {"barcode": "520101000005", "supermarket": "Lidl", "price": 0.85},
-    {"barcode": "520101000005", "supermarket": "Sklavenitis", "price": 0.92},
-    {"barcode": "520101000005", "supermarket": "AB Vassilopoulos", "price": 0.98},
-    {"barcode": "520101000005", "supermarket": "MyMarket", "price": 0.90},
-    {"barcode": "520101000005", "supermarket": "Galaxias", "price": 0.88},
-    {"barcode": "520101000005", "supermarket": "Kritikos", "price": 0.95},
+    {"barcode": "520101000005", "chain_name": "Lidl", "price": 0.85},
+    {"barcode": "520101000005", "chain_name": "Σκλαβενίτης", "price": 0.92},
+    {"barcode": "520101000005", "chain_name": "ΑΒ Βασιλόπουλος", "price": 0.98},
+    {"barcode": "520101000005", "chain_name": "MyMarket", "price": 0.90},
+    {"barcode": "520101000005", "chain_name": "Γαλαξίας", "price": 0.88},
+    {"barcode": "520101000005", "chain_name": "Κρητικός", "price": 0.95},
 
     # Χαρτί Υγείας
-    {"barcode": "520101000006", "supermarket": "Lidl", "price": 3.99},
-    {"barcode": "520101000006", "supermarket": "Sklavenitis", "price": 4.20},
-    {"barcode": "520101000006", "supermarket": "AB Vassilopoulos", "price": 4.50},
-    {"barcode": "520101000006", "supermarket": "MyMarket", "price": 4.15},
-    {"barcode": "520101000006", "supermarket": "Galaxias", "price": 4.10},
-    {"barcode": "520101000006", "supermarket": "Kritikos", "price": 4.30}
+    {"barcode": "520101000006", "chain_name": "Lidl", "price": 3.99},
+    {"barcode": "520101000006", "chain_name": "Σκλαβενίτης", "price": 4.20},
+    {"barcode": "520101000006", "chain_name": "ΑΒ Βασιλόπουλος", "price": 4.50},
+    {"barcode": "520101000006", "chain_name": "MyMarket", "price": 4.15},
+    {"barcode": "520101000006", "chain_name": "Γαλαξίας", "price": 4.10},
+    {"barcode": "520101000006", "chain_name": "Κρητικός", "price": 4.30}
 ]
 
-# -------------------------------------------------------------
-# 4. Ασφαλής Εγγραφή Προϊόντων (Safe Insert / Update)
-# -------------------------------------------------------------
-product_map = {}  # barcode -> db_id
+# 4. Εγγραφή Προϊόντων
+product_map = {}
 
 for prod in products_catalog:
     bcd = prod["barcode"]
     try:
-        # Έλεγχος αν υπάρχει ήδη
         existing = supabase.table("products").select("id").eq("barcode", bcd).execute()
         
         if existing.data and len(existing.data) > 0:
             prod_id = existing.data[0]["id"]
             supabase.table("products").update(prod).eq("id", prod_id).execute()
-            print(f"📦 Ενημερώθηκε: {prod['name']} (ID: {prod_id})")
         else:
             inserted = supabase.table("products").insert(prod).execute()
             prod_id = inserted.data[0]["id"]
-            print(f"➕ Προστέθηκε: {prod['name']} (ID: {prod_id})")
             
         product_map[bcd] = prod_id
+        print(f"📦 Προϊόν {prod['name']} -> ID: {prod_id}")
     except Exception as e:
         print(f"❌ Σφάλμα στο προϊόν {prod['name']}: {e}")
 
-# -------------------------------------------------------------
-# 5. Ασφαλής Εγγραφή Τιμών (Safe Insert / Update)
-# -------------------------------------------------------------
+# 5. Εγγραφή Τιμών στη στήλη chain_name
 for item in prices_catalog:
     bcd = item["barcode"]
-    market = item["supermarket"]
+    chain = item["chain_name"]
     price_val = item["price"]
     
     prod_id = product_map.get(bcd)
     if not prod_id:
-        print(f"⚠️ Παράβλεψη τιμής για barcode {bcd}: Δεν βρέθηκε το ID προϊόντος.")
         continue
 
     try:
-        # Έλεγχος αν υπάρχει ήδη εγγραφή τιμής για το ίδιο προϊόν & αλυσίδα
         existing_price = supabase.table("prices")\
             .select("id")\
             .eq("product_id", prod_id)\
-            .eq("supermarket", market)\
+            .eq("chain_name", chain)\
             .execute()
             
         payload = {
             "product_id": prod_id,
-            "supermarket": market,
+            "chain_name": chain,
             "price": price_val
         }
 
         if existing_price.data and len(existing_price.data) > 0:
             row_id = existing_price.data[0]["id"]
             supabase.table("prices").update(payload).eq("id", row_id).execute()
-            print(f"  💰 Ενημέρωση: {market} -> {price_val}€")
+            print(f"  💰 Ενημέρωση: {chain} -> {price_val}€")
         else:
             supabase.table("prices").insert(payload).execute()
-            print(f"  ➕ Νέα Τιμή: {market} -> {price_val}€")
+            print(f"  ➕ Νέα Εγγραφή: {chain} -> {price_val}€")
 
     except Exception as e:
-        print(f"❌ Σφάλμα στην τιμή {market}: {e}")
+        print(f"❌ Σφάλμα στην τιμή {chain}: {e}")
 
-print("🎉 Ο συγχρονισμός ολοκληρώθηκε 100% επιτυχώς και χωρίς σφάλματα!")
+print("🎉 Ο συγχρονισμός ολοκληρώθηκε επιτυχώς με τη στήλη chain_name!")
+
