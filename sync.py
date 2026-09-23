@@ -1,7 +1,7 @@
 import os
 import sys
 
-print("🚀 Εκκίνηση συγχρονισμού με τη σωστή στήλη (chain_name)...")
+print("🚀 Εκκίνηση συγχρονισμού για ΟΛΑ τα προϊόντα (1-15)...")
 
 # 1. Έλεγχος Περιβάλλοντος
 url = os.environ.get("SUPABASE_URL")
@@ -19,68 +19,59 @@ except Exception as e:
     print(f"❌ Σφάλμα σύνδεσης: {e}")
     sys.exit(1)
 
-# 2. Κατάλογος Προϊόντων
+# 2. Πλήρης Κατάλογος Προϊόντων (15 Προϊόντα)
 products_catalog = [
     {"barcode": "520101000001", "name": "Ελαιόλαδο Έξτρα Παρθένο 1L", "category": "Ελαιόλαδα", "brand": "Χωριό", "unit": "1L", "image_url": "https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=400"},
     {"barcode": "520101000002", "name": "Φέτα Π.Ο.Π. 400g", "category": "Γαλακτοκομικά", "brand": "Δωδώνη", "unit": "400g", "image_url": "https://images.unsplash.com/photo-1559561853-08451507cbe7?w=400"},
     {"barcode": "520101000003", "name": "Γάλα Φρέσκο Πλήρες 1L", "category": "Γαλακτοκομικά", "brand": "ΟΛΥΜΠΟΣ", "unit": "1L", "image_url": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400"},
     {"barcode": "520101000004", "name": "Εσπρέσο Αλεσμένος 250g", "category": "Καφέδες", "brand": "Jacobs", "unit": "250g", "image_url": "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400"},
     {"barcode": "520101000005", "name": "Μακαρόνια No 6 500g", "category": "Ζυμαρικά", "brand": "MISKO", "unit": "500g", "image_url": "https://images.unsplash.com/photo-1621996346565-e3d5d6281318?w=400"},
-    {"barcode": "520101000006", "name": "Χαρτί Υγείας 3-ply 10 ρολά", "category": "Χαρτικά & Καθαριστικά", "brand": "Endless", "unit": "10 τμχ", "image_url": "https://images.unsplash.com/photo-1584556812952-905ffd0c611a?w=400"}
+    {"barcode": "520101000006", "name": "Χαρτί Υγείας 3-ply 10 ρολά", "category": "Χαρτικά & Καθαριστικά", "brand": "Endless", "unit": "10 τμχ", "image_url": "https://images.unsplash.com/photo-1584556812952-905ffd0c611a?w=400"},
+    {"barcode": "520101000007", "name": "Γιαούρτι Στραγγιστό 2% 3x200g", "category": "Γαλακτοκομικά", "brand": "ΦΑΓΕ", "unit": "600g", "image_url": "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=400"},
+    {"barcode": "520101000008", "name": "Δημητριακά Ολικής 375g", "category": "Πρωινό", "brand": "Nestle Fitness", "unit": "375g", "image_url": "https://images.unsplash.com/photo-1521483451569-e33803c0330c?w=400"},
+    {"barcode": "520101000009", "name": "Χυμός Πορτοκάλι 100% 1L", "category": "Αναψυκτικά & Χυμοί", "brand": "Amita", "unit": "1L", "image_url": "https://images.unsplash.com/photo-1600271886742-f049cd451bba?w=400"},
+    {"barcode": "520101000010", "name": "Τόνος σε Νερό 3x80g", "category": "Κονσέρβες", "brand": "Rio Mare", "unit": "240g", "image_url": "https://images.unsplash.com/photo-1534483509719-3feaee7c30da?w=400"},
+    {"barcode": "520101000011", "name": "Ρύζι Καρολίνα 1kg", "category": "Όσπρια & Ρύζια", "brand": "Agrino", "unit": "1kg", "image_url": "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400"},
+    {"barcode": "520101000012", "name": "Μπισκότα Γεμιστά 200g", "category": "Σνακ & Γλυκά", "brand": "Παπαδοπούλου", "unit": "200g", "image_url": "https://images.unsplash.com/photo-1558961363-fa8fdf82db35?w=400"},
+    {"barcode": "520101000013", "name": "Υγρό Πιάτων 500ml", "category": "Χαρτικά & Καθαριστικά", "brand": "Fairy", "unit": "500ml", "image_url": "https://images.unsplash.com/photo-1585842378054-ee2e52f94ba2?w=400"},
+    {"barcode": "520101000014", "name": "Οδοντόκρεμα Total 75ml", "category": "Προσωπική Φροντίδα", "brand": "Colgate", "unit": "75ml", "image_url": "https://images.unsplash.com/photo-1559598467-f8b76c8155d0?w=400"},
+    {"barcode": "520101000015", "name": "Εμφιαλωμένο Νερό 6x1.5L", "category": "Αναψυκτικά & Χυμοί", "brand": "Ζαγόρι", "unit": "9L", "image_url": "https://images.unsplash.com/photo-1548839140-29a749e1bc4e?w=400"}
 ]
 
-# 3. Κατάλογος Τιμών (Χρήση chain_name)
-prices_catalog = [
-    # Ελαιόλαδο
-    {"barcode": "520101000001", "chain_name": "Lidl", "price": 10.90},
-    {"barcode": "520101000001", "chain_name": "Σκλαβενίτης", "price": 11.45},
-    {"barcode": "520101000001", "chain_name": "ΑΒ Βασιλόπουλος", "price": 11.80},
-    {"barcode": "520101000001", "chain_name": "MyMarket", "price": 11.20},
-    {"barcode": "520101000001", "chain_name": "Γαλαξίας", "price": 11.30},
-    {"barcode": "520101000001", "chain_name": "Κρητικός", "price": 11.40},
+# 3. Τιμές για Όλα τα 15 Προϊόντα & Όλες τις 6 Αλυσίδες
+chains = ["Lidl", "Σκλαβενίτης", "ΑΒ Βασιλόπουλος", "MyMarket", "Γαλαξίας", "Κρητικός"]
 
-    # Φέτα
-    {"barcode": "520101000002", "chain_name": "Lidl", "price": 4.95},
-    {"barcode": "520101000002", "chain_name": "Σκλαβενίτης", "price": 5.25},
-    {"barcode": "520101000002", "chain_name": "ΑΒ Βασιλόπουλος", "price": 5.48},
-    {"barcode": "520101000002", "chain_name": "MyMarket", "price": 5.15},
-    {"barcode": "520101000002", "chain_name": "Γαλαξίας", "price": 5.10},
-    {"barcode": "520101000002", "chain_name": "Κρητικός", "price": 5.30},
+# Βασικές τιμές αναφοράς για κάθε προϊόν
+base_prices = {
+    "520101000001": 11.20,
+    "520101000002": 5.20,
+    "520101000003": 1.60,
+    "520101000004": 4.70,
+    "520101000005": 0.90,
+    "520101000006": 4.10,
+    "520101000007": 3.40,
+    "520101000008": 2.80,
+    "520101000009": 1.50,
+    "520101000010": 4.90,
+    "520101000011": 2.10,
+    "520101000012": 1.20,
+    "520101000013": 2.30,
+    "520101000014": 2.90,
+    "520101000015": 1.80
+}
 
-    # Γάλα
-    {"barcode": "520101000003", "chain_name": "Lidl", "price": 1.55},
-    {"barcode": "520101000003", "chain_name": "Σκλαβενίτης", "price": 1.62},
-    {"barcode": "520101000003", "chain_name": "ΑΒ Βασιλόπουλος", "price": 1.68},
-    {"barcode": "520101000003", "chain_name": "MyMarket", "price": 1.60},
-    {"barcode": "520101000003", "chain_name": "Γαλαξίας", "price": 1.58},
-    {"barcode": "520101000003", "chain_name": "Κρητικός", "price": 1.65},
+prices_catalog = []
 
-    # Καφές
-    {"barcode": "520101000004", "chain_name": "Lidl", "price": 4.50},
-    {"barcode": "520101000004", "chain_name": "Σκλαβενίτης", "price": 4.80},
-    {"barcode": "520101000004", "chain_name": "ΑΒ Βασιλόπουλος", "price": 4.95},
-    {"barcode": "520101000004", "chain_name": "MyMarket", "price": 4.75},
-    {"barcode": "520101000004", "chain_name": "Γαλαξίας", "price": 4.65},
-    {"barcode": "520101000004", "chain_name": "Κρητικός", "price": 4.85},
+# Δημιουργία τιμών με μικρές διακυμάνσεις ανά αλυσίδα
+for bcd, price in base_prices.items():
+    prices_catalog.append({"barcode": bcd, "chain_name": "Lidl", "price": round(price * 0.95, 2)})            # Lidl η φθηνότερη
+    prices_catalog.append({"barcode": bcd, "chain_name": "Σκλαβενίτης", "price": round(price * 1.00, 2)})
+    prices_catalog.append({"barcode": bcd, "chain_name": "MyMarket", "price": round(price * 1.01, 2)})
+    prices_catalog.append({"barcode": bcd, "chain_name": "Γαλαξίας", "price": round(price * 1.02, 2)})
+    prices_catalog.append({"barcode": bcd, "chain_name": "Κρητικός", "price": round(price * 1.03, 2)})
+    prices_catalog.append({"barcode": bcd, "chain_name": "ΑΒ Βασιλόπουλος", "price": round(price * 1.05, 2)})
 
-    # Μακαρόνια
-    {"barcode": "520101000005", "chain_name": "Lidl", "price": 0.85},
-    {"barcode": "520101000005", "chain_name": "Σκλαβενίτης", "price": 0.92},
-    {"barcode": "520101000005", "chain_name": "ΑΒ Βασιλόπουλος", "price": 0.98},
-    {"barcode": "520101000005", "chain_name": "MyMarket", "price": 0.90},
-    {"barcode": "520101000005", "chain_name": "Γαλαξίας", "price": 0.88},
-    {"barcode": "520101000005", "chain_name": "Κρητικός", "price": 0.95},
-
-    # Χαρτί Υγείας
-    {"barcode": "520101000006", "chain_name": "Lidl", "price": 3.99},
-    {"barcode": "520101000006", "chain_name": "Σκλαβενίτης", "price": 4.20},
-    {"barcode": "520101000006", "chain_name": "ΑΒ Βασιλόπουλος", "price": 4.50},
-    {"barcode": "520101000006", "chain_name": "MyMarket", "price": 4.15},
-    {"barcode": "520101000006", "chain_name": "Γαλαξίας", "price": 4.10},
-    {"barcode": "520101000006", "chain_name": "Κρητικός", "price": 4.30}
-]
-
-# 4. Εγγραφή Προϊόντων
+# 4. Εγγραφή Προϊόντων στο Supabase
 product_map = {}
 
 for prod in products_catalog:
@@ -126,13 +117,10 @@ for item in prices_catalog:
         if existing_price.data and len(existing_price.data) > 0:
             row_id = existing_price.data[0]["id"]
             supabase.table("prices").update(payload).eq("id", row_id).execute()
-            print(f"  💰 Ενημέρωση: {chain} -> {price_val}€")
         else:
             supabase.table("prices").insert(payload).execute()
-            print(f"  ➕ Νέα Εγγραφή: {chain} -> {price_val}€")
 
     except Exception as e:
         print(f"❌ Σφάλμα στην τιμή {chain}: {e}")
 
-print("🎉 Ο συγχρονισμός ολοκληρώθηκε επιτυχώς με τη στήλη chain_name!")
-
+print("🎉 Ο συγχρονισμός ολοκληρώθηκε επιτυχώς για ΟΛΑ τα 15 προϊόντα!")
